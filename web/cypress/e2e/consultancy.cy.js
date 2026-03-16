@@ -1,5 +1,5 @@
 describe("Formulário de Consultoria", () => {
-  it("Deve solicitar consultoria individual", () => {
+  it.only("Deve solicitar consultoria individual", () => {
     cy.start();
     cy.submitLoginForm("papito@webdojo.com", "katana123");
 
@@ -82,12 +82,24 @@ describe("Formulário de Consultoria", () => {
     });
 
     // submetendo o formulário
-    cy.contains('label', 'termos de uso').find('input').check().should('be.checked');
+    cy.contains("label", "termos de uso")
+      .find("input")
+      .check()
+      .should("be.checked");
+
     cy.contains("button", "Enviar formulário").click();
-    cy.contains('Sua solicitação de consultoria foi enviada com sucesso! Em breve, nossa equipe entrará em contato através do email fornecido.').should('be.visible');
+
+    cy.get(".modal", { timeout: 10000 })
+      .should("be.visible")
+      .find(".modal-content")
+      .should("be.visible")
+      .and(
+        "have.text",
+        "Sua solicitação de consultoria foi enviada com sucesso! Em breve, nossa equipe entrará em contato através do email fornecido.",
+      );
   });
 
-  it.only("Deve verificar os campos obrigatórios do formulário", () => {
+  it("Deve verificar os campos obrigatórios do formulário", () => {
     cy.start();
     cy.submitLoginForm("papito@webdojo.com", "katana123");
 
@@ -97,9 +109,28 @@ describe("Formulário de Consultoria", () => {
     cy.contains("button", "Enviar formulário").click();
 
     // verificando se os campos obrigatórios estão marcados como inválidos
-    cy.contains('p', 'Campo obrigatório').should('be.visible').and('have.class', 'text-red-400').and('have.css','color', 'rgb(248, 113, 113)');
-    cy.contains('p', 'Campo obrigatório').should('be.visible').and('have.class', 'text-red-400').and('have.css','color', 'rgb(248, 113, 113)');
-    cy.contains('p', 'Você precisa aceitar os termos de uso').should('be.visible').and('have.class', 'text-red-400').and('have.css','color', 'rgb(248, 113, 113)');
-  });
+    cy.contains("label", "Nome Completo")
+      .parent()
+      .find("p")
+      .should("be.visible")
+      .should("contain.text", "Campo obrigatório")
+      .and("have.class", "text-red-400")
+      .and("have.css", "color", "rgb(248, 113, 113)");
 
+    cy.contains("label", "Email")
+      .parent()
+      .find("p")
+      .should("be.visible")
+      .should("contain.text", "Campo obrigatório")
+      .and("have.class", "text-red-400")
+      .and("have.css", "color", "rgb(248, 113, 113)");
+
+    cy.contains("label", "termos de uso")
+      .parent()
+      .find("p")
+      .should("be.visible")
+      .should("contain.text", "Você precisa aceitar os termos de uso")
+      .and("have.class", "text-red-400")
+      .and("have.css", "color", "rgb(248, 113, 113)");
+  });
 });
