@@ -1,1 +1,10 @@
-npm i cypress-real-events
+npm i cypress-real-events -> O cypress-real-events serve para permitir que o Cypress dispare eventos reais do navegador, em vez de eventos simulados em JavaScript, aproximando o teste do comportamento real do usuário.
+
+Onde está sendo usado neste projeto:
+- cypress/e2e/hover.cy.js (linha 8): cy.get('[data-cy="instagram-link"]').realHover();
+- O import global está em cypress/support/commands.js e é carregado por cypress/support/e2e.js.
+
+Para que serve (na prática aqui):
+- Permitir simular hover real do mouse com realHover(), fazendo o tooltip aparecer como no uso real do navegador.
+
+npx cypress run --spec cypress/e2e/login.cy.js -> comando para rodar apenas 1 teste em específico

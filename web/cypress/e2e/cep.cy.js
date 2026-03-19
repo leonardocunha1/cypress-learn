@@ -2,7 +2,7 @@ import address from "../fixtures/cep.json";
 
 describe("CEP", () => {
   beforeEach(() => {
-    cy.login();
+    cy.login(true);
     cy.goTo("Integração", "Consulta de CEP");
   });
 

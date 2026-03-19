@@ -1,12 +1,6 @@
-describe("Login", () => {
-  function getTodayFormattedDate() {
-    const hoje = new Date();
-    const dia = String(hoje.getDate()).padStart(2, "0");
-    const mes = String(hoje.getMonth() + 1).padStart(2, "0");
-    const ano = hoje.getFullYear();
-    return `${dia}/${mes}/${ano}`;
-  }
+import { getTodayFormattedDate } from "../support/utils";
 
+describe("Login", () => {
   beforeEach(() => {
     cy.start();
   });
@@ -29,6 +23,11 @@ describe("Login", () => {
 
     cy.getCookie("login_date").should((cookie) => {
       expect(cookie.value).to.eq(getTodayFormattedDate());
+    });
+
+    cy.window().then((win) => {
+      const token = win.localStorage.getItem("token");
+      expect(token).to.match(/^[a-fA-F0-9]{32}$/);
     });
   });
 
