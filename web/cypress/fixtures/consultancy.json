@@ -1,0 +1,34 @@
+{
+  "personal": {
+    "fullName": "Fernando Papito",
+    "email": "papito@teste.com.br",
+    "phone": "11 99999-9999",
+    "consultancyType": "Individual",
+    "personType": "cpf",
+    "document": "12345678900",
+    "discoveryChannels": [
+      "Instagram",
+      "LinkedIn",
+      "Udemy",
+      "YouTube",
+      "Indicação de Amigo"
+    ],
+    "file": "./cypress/fixtures/Lorem.pdf",
+    "description": "Estou buscando uma consultoria para melhorar minhas habilidades em Cypress e automação de testes.",
+    "techs": ["JavaScript", "Cypress", "Test Automation", "Playwright"],
+    "terms": true
+  },
+  "inCompany": {
+    "fullName": "Fernando Papito",
+    "email": "papito@teste.com.br",
+    "phone": "11 99999-9999",
+    "consultancyType": "In Company",
+    "personType": "cnpj",
+    "document": "12345678000100",
+    "discoveryChannels": ["LinkedIn"],
+    "file": "./cypress/fixtures/Lorem.pdf",
+    "description": "Estou buscando uma consultoria para melhorar minhas habilidades em Cypress e automação de testes.",
+    "techs": ["Cypress"],
+    "terms": true
+  }
+}

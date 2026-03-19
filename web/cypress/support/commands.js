@@ -25,6 +25,7 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 import "cypress-real-events";
+import "./actions/consultancy.actions";
 
 Cypress.Commands.add("start", () => {
   cy.viewport(1440, 900);
@@ -41,4 +42,10 @@ Cypress.Commands.add("goTo", (buttonName, pageTittle) => {
   cy.contains("button", buttonName).should("be.visible").click();
 
   cy.contains("h1", pageTittle).should("be.visible");
+});
+
+// Helpers
+Cypress.Commands.add("login", () => {
+  cy.start();
+  cy.submitLoginForm("papito@webdojo.com", "katana123");
 });
