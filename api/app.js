@@ -58,6 +58,15 @@ app.post("/api/users/register", async (req, res) => {
   }
 });
 
+app.get("/api/users", async (req, res) => {
+  try {
+    const users = await prisma.user.findMany();
+    return res.json(users);
+  } catch (error) {
+    return res.status(500).json({ message: "Error fetching users." });
+  }
+});
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });

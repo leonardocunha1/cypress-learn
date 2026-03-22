@@ -11,4 +11,5 @@ npx cypress run --spec cypress/e2e/login.cy.js -> comando para rodar apenas 1 te
 
 
 
-import "cypress-plugin-api";
+"cypress-plugin-api" -> Plugin para testar APIs direto no Cypress com comandos HTTP (GET, POST, PUT, DELETE), facilitando validar status, body e headers nas respostas sem depender da interface. 
+"pg-promise" -> Biblioteca Node.js para conectar e executar queries no PostgreSQL com suporte a promises, útil para criar scripts/seed, validar dados no banco e montar helpers de acesso a dados.
