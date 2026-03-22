@@ -8,3 +8,7 @@ Para que serve (na prática aqui):
 - Permitir simular hover real do mouse com realHover(), fazendo o tooltip aparecer como no uso real do navegador.
 
 npx cypress run --spec cypress/e2e/login.cy.js -> comando para rodar apenas 1 teste em específico
+
+
+
+import "cypress-plugin-api";
