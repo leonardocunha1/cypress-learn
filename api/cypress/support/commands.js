@@ -1,37 +1,52 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+const defaultJsonHeaders = {
+  "Content-Type": "application/json",
+};
+
+function apiRequest({ method, url, body, headers = defaultJsonHeaders }) {
+  return cy.api({
+    method,
+    url,
+    body,
+    headers,
+    failOnStatusCode: false,
+  });
+}
 
 Cypress.Commands.add("postUser", (user) => {
-  return cy.api({
+  return apiRequest({
     method: "POST",
-    url: "http://localhost:3333/api/users/register",
+    url: "/api/users/register",
     body: user,
-    headers: {
-      "Content-Type": "application/json",
-    },
-    failOnStatusCode: false,
+  });
+});
+
+Cypress.Commands.add("postUserRaw", (rawBody) => {
+  return apiRequest({
+    method: "POST",
+    url: "/api/users/register",
+    body: rawBody,
+    headers: defaultJsonHeaders,
+  });
+});
+
+Cypress.Commands.add("getUsers", () => {
+  return apiRequest({
+    method: "GET",
+    url: "/api/users",
+  });
+});
+
+Cypress.Commands.add("putUser", (id, user) => {
+  return apiRequest({
+    method: "PUT",
+    url: `/api/users/${id}`,
+    body: user,
+  });
+});
+
+Cypress.Commands.add("deleteUser", (id) => {
+  return apiRequest({
+    method: "DELETE",
+    url: `/api/users/${id}`,
   });
 });

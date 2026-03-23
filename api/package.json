@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "cypress run --e2e",
     "start": "node app.js",
     "dev": "nodemon app.js",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run --e2e",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
     "prisma:studio": "prisma studio"
